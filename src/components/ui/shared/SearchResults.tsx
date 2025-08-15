@@ -2,7 +2,7 @@ import { Models } from "appwrite";
 import React from "react";
 import GridPostList from "./GridPostList";
 import Loader from "./Loader";
-import { searchPosts } from "@/lib/appwrite/api";
+
 
 type SearchResultsProps = {
     isSEARCHFetching: boolean;

@@ -58,11 +58,12 @@ export const useSignOutAccount = () => {
 export const useGetPosts = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-    queryFn: getInfinitePosts as any,
-    getNextPageParam: (lastPage: any) => {
+    queryFn: getInfinitePosts,
+    initialPageParam: undefined, // Required in React Query v5+
+    getNextPageParam: (lastPage) => {
       // If there's no data, there are no more pages.
-      if (lastPage && lastPage.documents.length === 0) {
-        return null;
+      if (!lastPage || !lastPage.documents || lastPage.documents.length === 0) {
+        return undefined;
       }
 
       // Use the $id of the last document as the cursor.
